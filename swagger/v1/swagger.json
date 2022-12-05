@@ -1,0 +1,516 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Vessel Management API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/token": {
+      "post": {
+        "summary": "authenticate user",
+        "tags": [
+          "Token"
+        ],
+        "description": "Authenticate user",
+        "parameters": [
+
+        ],
+        "responses": {
+          "200": {
+            "description": "successful",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "token": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "token"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "api_key": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels": {
+      "get": {
+        "summary": "list vessels",
+        "tags": [
+          "Vessels"
+        ],
+        "description": "Get list of vessels",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create vessel",
+        "tags": [
+          "Vessels"
+        ],
+        "description": "Create a vessel",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+
+        ],
+        "responses": {
+          "201": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "owner_id": {
+                    "type": "string"
+                  },
+                  "naccs": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "owner_id",
+                  "naccs"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels/{id}": {
+      "patch": {
+        "summary": "update vessel",
+        "tags": [
+          "Vessels"
+        ],
+        "description": "Update a vessel",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "owner_id": {
+                    "type": "string"
+                  },
+                  "naccs": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "owner_id",
+                  "naccs"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update vessel",
+        "tags": [
+          "Vessels"
+        ],
+        "description": "Update a vessel",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "owner_id": {
+                    "type": "string"
+                  },
+                  "naccs": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "name",
+                  "owner_id",
+                  "naccs"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels/{vessel_id}/voyages": {
+      "get": {
+        "summary": "list voyages",
+        "tags": [
+          "Voyages"
+        ],
+        "description": "Get list of voyages",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "description": "vessel id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "page",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          },
+          {
+            "name": "size",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        }
+      },
+      "post": {
+        "summary": "create voyage",
+        "tags": [
+          "Voyages"
+        ],
+        "description": "Create a voyage",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "description": "vessel id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from_loc": {
+                    "type": "string"
+                  },
+                  "to_loc": {
+                    "type": "string"
+                  },
+                  "departured_at": {
+                    "type": "string"
+                  },
+                  "arrived_at": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from_loc",
+                  "to_loc",
+                  "departured_at",
+                  "arrived_at"
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vessels/{vessel_id}/voyages/{id}": {
+      "patch": {
+        "summary": "update voyage",
+        "tags": [
+          "Voyages"
+        ],
+        "description": "Update a voyage",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "description": "vessel id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from_loc": {
+                    "type": "string"
+                  },
+                  "to_loc": {
+                    "type": "string"
+                  },
+                  "departured_at": {
+                    "type": "string"
+                  },
+                  "arrived_at": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from_loc",
+                  "to_loc",
+                  "departured_at",
+                  "arrived_at"
+                ]
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "update voyage",
+        "tags": [
+          "Voyages"
+        ],
+        "description": "Update a voyage",
+        "security": [
+          {
+            "jwt_token": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "vessel_id",
+            "in": "path",
+            "description": "vessel id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "from_loc": {
+                    "type": "string"
+                  },
+                  "to_loc": {
+                    "type": "string"
+                  },
+                  "departured_at": {
+                    "type": "string"
+                  },
+                  "arrived_at": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "from_loc",
+                  "to_loc",
+                  "departured_at",
+                  "arrived_at"
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "http://{defaultHost}",
+      "variables": {
+        "defaultHost": {
+          "default": "localhost:3000"
+        }
+      }
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "jwt_token": {
+        "type": "http",
+        "scheme": "Bearer"
+      }
+    }
+  }
+}

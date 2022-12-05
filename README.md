@@ -51,3 +51,22 @@ then attach to the running container with
 $ docker ps # to get container's id
 $ docker attach f6e5f3b328e6
 ```
+
+to SSH into the container run
+```SH
+$ docker-compose exec voyagy bash
+```
+
+# Test API
+
+First create a test user using rake task
+```SH
+$ rails users:create
+```
+
+Follow the prompt and after finished open up browser and go to `http://localhost:3000/api-docs`.
+Swagger API documentation page that will allow us to test our api by following these steps.
+
+1. Issue a token using user api_key with token endpoint
+2. Authorize subsequence endpoints using the returned token from previous endpoint
+3. Execute the rest of endpoints
