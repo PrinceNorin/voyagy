@@ -6,6 +6,7 @@ class ApplicationController < ActionController::API
   before_action :authenticate_user!
 
   rescue_from ActiveRecord::RecordInvalid, with: :render_bad_request
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   def current_user
     @current_user ||= _current_user
@@ -45,6 +46,13 @@ class ApplicationController < ActionController::API
       error: '400 Bad request',
       details: ex.record.errors.as_json
     }, status: :bad_request
+  end
+
+  def render_not_found
+    render json: {
+      code: 404,
+      error: '404 Not found'
+    }, status: :not_found
   end
 
   def page_meta(page)
