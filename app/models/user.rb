@@ -11,10 +11,12 @@ class User < ApplicationRecord
   before_validation :normalize_email!
   before_create :generate_api_key!
 
+  has_many :vessels, dependent: :destroy
+
   private
 
   def normalize_email!
-    self.email = email.downcase
+    self.email = email.to_s.downcase
   end
 
   def generate_api_key!

@@ -8,6 +8,7 @@ gem 'sqlite3', '~> 1.4'
 gem 'puma', '~> 5.0'
 gem 'jwt', '~> 2.5.0'
 gem 'bcrypt', '~> 3.1.7'
+gem 'pagy', '~> 5.10'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
