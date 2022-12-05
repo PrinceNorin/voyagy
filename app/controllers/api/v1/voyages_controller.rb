@@ -2,20 +2,18 @@ class Api::V1::VoyagesController < ApplicationController
   before_action :find_vessel
 
   def index
-    page, voyages = pagy(@vessel.voyages)
-    data = { data: voyages }.merge(page_meta(page))
-    render json: data, status: :ok
+    render_json @vessel.voyages, status: :ok
   end
 
   def create
     voyage = @vessel.voyages.create!(voyage_params)
-    render json: { data: voyage }, status: :created
+    render_json voyage, status: :created
   end
 
   def update
     voyage = @vessel.voyages.find(params[:id])
     voyage.update!(voyage_params)
-    render json: { data: voyage }, status: :ok
+    render_json voyage, status: :ok
   end
 
   private

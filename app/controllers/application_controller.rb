@@ -18,6 +18,16 @@ class ApplicationController < ActionController::API
     vars
   end
 
+  def render_json(data, options = {})
+    if data.respond_to?(:each)
+      page, records = pagy(data)
+      json = { data: records }.merge(page_meta(page))
+    else
+      json = data
+    end
+    render json: json, **options
+  end
+
   protected
 
   def authenticate_user!
