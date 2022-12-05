@@ -1,0 +1,11 @@
+version: "3"
+
+services:
+  voyagy:
+    image: voyagy:0.0.1
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    tty: true
+    stdin_open: true
